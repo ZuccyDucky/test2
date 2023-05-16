@@ -1,0 +1,165 @@
+WindowManager:
+    MainWindow:
+    Kalender:
+    Study:
+    Challenges:
+    Setting:
+
+
+<MainWindow>:
+    name: "Main"
+
+    my_textinput: my_textinput
+    my_label: my_label
+
+    GridLayout:
+        size_hint: (0.6, 0.8)
+        row_default_height: 75
+        row_force_default: True
+        pos: root.width/4.5,0
+
+        cols: 1
+
+        GridLayout:
+            cols: 3 
+
+            TextInput:
+                id: my_textinput
+
+            Button:
+                id: my_button
+                text: "Submit Task"
+                on_press:
+                    root.btn()
+            Label:
+                text: "To do:"
+                id: my_label
+
+        Button:
+            text: "Kalender"
+            on_release:
+                app.root.current = "Kalender"
+                root.manager.transition.direction = "left"
+                
+        
+        Button:
+            text: "Study"
+            on_release:
+                app.root.current = "Study"
+                root.manager.transition.direction = "left"
+        
+        Button:
+            text: "Challenges"
+            on_release:
+                app.root.current = "Challenges"
+                root.manager.transition.direction = "left"
+                
+
+        Button:
+            text: "Settings"
+            on_release:
+                app.root.current = "Setting"
+                root.manager.transition.direction = "left"
+                
+
+<Kalender>:
+    name: "Kalender"
+
+    GridLayout:
+        cols: 1
+        size_hint: (0.6, 0.8)
+        pos: root.width-625,root.height-500
+
+        Image:
+            source: "presentation\kalender.PNG"
+            size_hint: (1.5,1.5)
+
+        Button:
+            text: "back"
+            size_hint: (0.5,0.25)
+            on_release:
+                app.root.current = "Main"
+                root.manager.transition.direction = "right"
+
+    
+
+<Study>:
+    name: "Study"
+
+    GridLayout:
+        cols: 1
+    
+        Label:
+            id: show
+            text: 'Enter the time to countdown in this format "HH:MM:SS"\n For example, 00:00:30'
+            font_size: 17
+            
+        TextInput:
+            id: text_input
+            text: '00:00:00'
+            multiline: False
+            on_text: 
+                root.update_padding(args[0])
+
+            padding_x: (self.width/2)-28
+            size_hint: (1, 0.25)
+                        
+        GridLayout:
+            cols: 2
+
+            Button:
+                id: button
+                text: "Start"
+                on_press: root.start()
+                
+            Button:
+                id: pause_button
+                text: "Pause"
+                on_press: root.pause()
+        Button:
+            text: "back"
+            size_hint: (0.5,0.5)
+            on_release:
+                app.root.current = "Main"
+                root.manager.transition.direction = "right"
+        
+
+        
+
+<Challenges>:
+    name: "Challenges"
+
+    GridLayout:
+        cols: 1
+        size_hint: (0.6, 0.8)
+        pos: root.width-625,root.height-500
+
+        Button:
+            text: "back"
+            size_hint: (0.5,0.25)
+            on_release:
+                app.root.current = "Main"
+                root.manager.transition.direction = "right"
+
+<Setting>:
+    name: "Setting"
+
+    GridLayout:
+        cols: 1
+        size_hint: (0.6, 0.8)
+        pos: root.width-625,root.height-500
+
+        Image:
+            source: "presentation\iphone settings.png"
+
+        Button:
+            text: "back"
+            size_hint: (0.5,0.25)
+            on_release:
+                app.root.current = "Main"
+                root.manager.transition.direction = "right"
+
+                
+
+
+               
